@@ -83,37 +83,45 @@ input:focus::placeholder
 	<h1>Will this customer subscribe to term deposit?????</h1>
 
 <p id="one" align="left">
-Attributes information to predict if customer will buy the product:
+
+Direct marketing campaigns (phone calls) of a Portuguese banking institution provided it with important data of its cutomers. Based on these marketing calls, below is the fortune teller which predicts if a particular customer will subscribe to term deposit.
+<br><br>
+Please Enter attributes in the textboxes below using this information:
 <br>
-<br>•	poutcome: outcome of the previous marketing campaign (categorical: 'failure','nonexistent','success')
-<br>•	emp.var.rate: employment variation rate - quarterly indicator (numeric)
-<br>•	month: last contact month of year (categorical: 'jan', 'feb', 'mar', ., 'nov', 'dec')
-<br>•	duration: last contact duration, in seconds (numeric). Important note: this attribute highly affects the output target (e.g., if duration=0 then y='no'). Yet, the duration is not known before a call is performed. Also, after the end of the call y is obviously known. Thus, this input should only be included for benchmark purposes and should be discarded if the intention is to have a realistic predictive model.
-<br>•	contact: contact communication type (categorical: 'cellular', 'telephone')
-<br>•	default: has credit in default? (categorical: 'no', 'yes', 'unknown')
-<br>•	job: type of job (categorical: 'admin.', 'blue-collar', 'entrepreneur', 'housemaid', 'management', 'retired', 'self-employed', 'services', 'student', 'technician', 'unemployed', 'unknown')
-<br>•	previous: number of contacts performed before this campaign and for this client (numeric)
-<br>•	campaign: number of contacts performed during this campaign and for this client (numeric, includes last contact)
+<br>•	poutcome_success: Was the outcome of previous marketing campaign successful for this particular customer?(0 if No and 1 if Yes)
+<br>•	poutcome_nonexistent: Was the outcome of previous marketing campaign non-existent for this particular customer?(0 if No and 1 if Yes)
+<br>•	emp_var_rate: employment variation rate - quarterly indicator (numeric)
+<br>•	month_mar: Is the current month March?(0 if No and 1 if Yes)
+<br>•	month_may: Is the current month May?(0 if No and 1 if Yes)
+<br>•	month_sep: Is the current month Sep?(0 if No and 1 if Yes)
+<br>•	month_oct: Is the current month Oct?(0 if No and 1 if Yes)
+<br>•	month_dec: Is the current month December?(0 if No and 1 if Yes)
+<br>•	duration: last contact duration, in seconds. 
+<br>•	contact_telephone: Was the customer contacted using telephone? (0 if No and 1 if Yes)
+<br>•	default_unknown: Is previous credit in default unknown? (0 if No and 1 if Yes)
+<br>•	job_blue_collar: Is the type of job blue-collar? (0 if No and 1 if Yes)
+<br>•	job_retired: Is the customer retired? (0 if No and 1 if Yes)
+<br>•	previous: number of contacts performed before this campaign and for this client (integer)
+<br>•	campaign: number of contacts performed during this campaign and for this client (integer, includes last contact)
 <br></p><br>
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
     	<input type="text" name="poutcome_success" placeholder="poutcome_success: Enter 0 or 1" required="required" /><br><br>
-        <input type="text" name="emp_var_rate" placeholder="emp_var_rate: Enter a value between -3.5 and 1.5" required="required: " /><br><br>
-		<input type="text" name="month_may" placeholder="month_may: Enter 0 or 1" required="required" /><br><br>
-		<input type="text" name="duration" placeholder="duration: last contact duration, in seconds" required="required" /><br><br>
+        <input type="text" name="poutcome_nonexistent" placeholder="poutcome_nonexistent: Enter 0 or 1 " required="required" /><br><br>
+		<input type="text" name="emp_var_rate" placeholder="emp_var_rate: Enter a value between -3.5 and 1.5" required="required: " /><br><br>
 		<input type="text" name="month_mar" placeholder="month_mar: Enter 0 or 1" required="required" /><br><br>
+		<input type="text" name="month_may" placeholder="month_may: Enter 0 or 1" required="required" /><br><br>
+		<input type="text" name="month_sep" placeholder="month_sep: Enter 0 or 1 " required="required" /><br><br>
+		<input type="text" name="month_oct" placeholder="month_oct: Enter 0 or 1" required="required" /><br><br>
+		<input type="text" name="month_dec" placeholder="month_dec : Enter 0 or 1 " required="required" /><br><br>
+		<input type="text" name="duration" placeholder="duration: last contact duration, in seconds" required="required" /><br><br>
 		<input type="text" name="contact_telephone" placeholder="contact_telephone: Enter 0 or 1" required="required" /><br><br>
 		<input type="text" name="default_unknown" placeholder="default_unknown: Enter 0 or 1" required="required" /><br><br>
 		<input type="text" name="job_blue_collar" placeholder="job_blue_collar: Enter 0 or 1" required="required" /><br><br>
 		<input type="text" name="job_retired" placeholder="job_retired: Enter 0 or 1" required="required" /><br><br>
-		<input type="text" name="previous" placeholder="previous: Enter a value between 0 and 3" required="required" /><br><br>
-		<input type="text" name="month_sep" placeholder="month_sep: Enter 0 or 1 " required="required" /><br><br>
-		<input type="text" name="month_oct" placeholder="month_oct: Enter 0 or 1" required="required" /><br><br>
+		<input type="text" name="previous" placeholder="previous: Enter an integer value between 0 and 3" required="required" /><br><br>
 		<input type="text" name="campaign" placeholder="campaign: Enter a value between 1 and 13" required="required" /><br><br>
-		<input type="text" name="poutcome_nonexistent" placeholder="poutcome_nonexistent: Enter 0 or 1 " required="required" /><br><br>
-		<input type="text" name="month_dec" placeholder="month_dec : Enter 0 or 1 " required="required" /><br><br>
-		
 
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     
